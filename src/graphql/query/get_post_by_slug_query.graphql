@@ -1,0 +1,10 @@
+query GET_POST_BY_SLUG($slugPost: String) {
+  posts(filters: { slug: { eq: $slugPost } }) {
+    data {
+      attributes {
+        title
+        slug
+      }
+    }
+  }
+}

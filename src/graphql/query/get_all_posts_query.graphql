@@ -1,0 +1,50 @@
+query GET_ALL_POSTS(
+  $limit: Int
+  $start: Int
+  $slugCategory: String
+  $slugTag: String
+  $slugAuthor: String
+  $slugPost: String
+) {
+  posts(
+    sort: "createdAt:DESC"
+    pagination: { limit: $limit, start: $start }
+    filters: {
+      categories: { slug: { eq: $slugCategory } }
+      tags: { slug: { eq: $slugTag } }
+      authors: { slug: { eq: $slugAuthor } }
+      slug: { eq: $slugPost }
+    }
+  ) {
+    data {
+      attributes {
+        title
+        slug
+        categories {
+          data {
+            attributes {
+              slug
+              displayName
+            }
+          }
+        }
+        tags {
+          data {
+            attributes {
+              slug
+              displayName
+            }
+          }
+        }
+        authors {
+          data {
+            attributes {
+              slug
+              displayName
+            }
+          }
+        }
+      }
+    }
+  }
+}
