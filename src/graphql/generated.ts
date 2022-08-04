@@ -1352,7 +1352,7 @@ export type Get_All_PostsQueryVariables = Exact<{
 }>;
 
 
-export type Get_All_PostsQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', attributes?: { __typename?: 'Post', title: string, slug: string, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', slug: string, displayName: string } | null }> } | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', slug: string, displayName: string } | null }> } | null, authors?: { __typename?: 'AuthorRelationResponseCollection', data: Array<{ __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', slug: string, displayName: string } | null }> } | null } | null }> } | null };
+export type Get_All_PostsQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', id?: string | null, attributes?: { __typename?: 'Post', title: string, slug: string, categories?: { __typename?: 'CategoryRelationResponseCollection', data: Array<{ __typename?: 'CategoryEntity', attributes?: { __typename?: 'Category', slug: string, displayName: string } | null }> } | null, tags?: { __typename?: 'TagRelationResponseCollection', data: Array<{ __typename?: 'TagEntity', attributes?: { __typename?: 'Tag', slug: string, displayName: string } | null }> } | null, authors?: { __typename?: 'AuthorRelationResponseCollection', data: Array<{ __typename?: 'AuthorEntity', attributes?: { __typename?: 'Author', slug: string, displayName: string } | null }> } | null } | null }> } | null };
 
 export type Get_Post_By_SlugQueryVariables = Exact<{
   slugPost?: InputMaybe<Scalars['String']>;
@@ -1370,6 +1370,7 @@ export const Get_All_PostsDocument = gql`
     filters: {categories: {slug: {eq: $slugCategory}}, tags: {slug: {eq: $slugTag}}, authors: {slug: {eq: $slugAuthor}}, slug: {eq: $slugPost}}
   ) {
     data {
+      id
       attributes {
         title
         slug
