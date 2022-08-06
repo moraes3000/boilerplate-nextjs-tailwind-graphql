@@ -12,23 +12,23 @@ export async function getStaticProps() {
 }
 
 
-const ModeloGraphQL: NextPage = ({posts}:Get_All_PostsQuery) => {
+const ModeloGraphQL: NextPage = ({ posts }: Get_All_PostsQuery) => {
 
   return (
-  <>
-   <div className='max-w-[900px] mx-auto'>
-    <h1 className='text-3xl font-bold my-4'>Modelo GraphQL</h1>
-    <ul>
-      {posts?posts.data.map((post) => (
-      <li key={post.attributes?.slug} className='ml-5 list-disc'>
-        <Link  passHref href={`${post.id}`}>
-          <a >{post.id} {post.attributes?.title}  </a>
-        </Link>
-      </li>
-      )): ''}
-    </ul>
-   </div>
-  </>
+    <>
+      <div className='max-w-[900px] mx-auto'>
+        <h1 className='text-3xl font-bold my-4'>Modelo GraphQL</h1>
+        <ul>
+          {posts ? posts.data.map((post) => (
+            <li key={post.attributes?.slug} className='ml-5 list-disc'>
+              <Link passHref href={`/graphql_request/${post.attributes?.slug}`}>
+                <a >{post.id} {post.attributes?.title}  </a>
+              </Link>
+            </li>
+          )) : ''}
+        </ul>
+      </div>
+    </>
   )
 }
 
