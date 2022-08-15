@@ -1359,7 +1359,7 @@ export type Get_Post_By_SlugQueryVariables = Exact<{
 }>;
 
 
-export type Get_Post_By_SlugQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', attributes?: { __typename?: 'Post', title: string, slug: string } | null }> } | null };
+export type Get_Post_By_SlugQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', attributes?: { __typename?: 'Post', title: string, slug: string, content: string } | null }> } | null };
 
 
 export const Get_All_PostsDocument = gql`
@@ -1410,6 +1410,7 @@ export const Get_Post_By_SlugDocument = gql`
       attributes {
         title
         slug
+        content
       }
     }
   }

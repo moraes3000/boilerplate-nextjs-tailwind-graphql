@@ -7,19 +7,7 @@ import { graphQLClient } from "../../lib/graphql_client";
 export async function getStaticProps(context: any) {
   const { params } = context
   const slugPost = params.slug
-  const dadoRequest = await graphQLClient.request(`
-      query ($slugPost: String) {
-      posts(filters: { slug: { eq: $slugPost } }) {
-        data {
-          attributes {
-            title
-            slug
-            content
-          }
-        }
-      }
-    }
-    `,
+  const dadoRequest = await graphQLClient.request(Get_Post_By_SlugDocument,
     { slugPost }
   )
   // console.log(`aqui vai a slug ---------------- ${slugPost}`)
@@ -27,18 +15,8 @@ export async function getStaticProps(context: any) {
 }
 
 export async function getStaticPaths() {
-  const { posts }: Get_Post_By_SlugQuery = await graphQLClient.request(`
-    query  {
-      posts{
-        data{
-          attributes{
-            slug
-          }
-        }
-      }
-    }
-  `)
-  // console.log(posts?.data[0].attributes?.slug)
+  const { posts }: Get_Post_By_SlugQuery = await graphQLClient.request(Get_Post_By_SlugDocument)
+
   return {
     paths: posts?.data.map((post) => ({
       params: post.attributes
@@ -48,8 +26,7 @@ export async function getStaticPaths() {
 }
 
 const ModeloGraphQL: NextPage = (dadoRequest: any) => {
-  console.log(dadoRequest.dadoRequest?.posts.data[0].attributes?.title)
-  console.log(dadoRequest.dadoRequest?.posts.data[0].attributes?.title)
+
 
   return (
     <>

@@ -4,6 +4,7 @@ query GET_POST_BY_SLUG($slugPost: String) {
       attributes {
         title
         slug
+        content
       }
     }
   }
